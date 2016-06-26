@@ -3,13 +3,16 @@ wb = xlsx_package.workbook
 
 # wrap it all in a syle block
 wb.styles do |style|
-  highlight_cell = style.add_style(bg_color: 'EFC376')
+  highlight_cell = style.add_style(bg_color: 'EFC376',
+                                   border: Axlsx::STYLE_THIN_BORDER,
+                                   alignment: { horizontal: :center })
 
   # add sheet to workbook
   wb.add_worksheet(name: 'Products') do |sheet|
     @products.each do |product|
       sheet.add_row [product.title, product.price], style: [nil, highlight_cell]
     end
+    sheet.rows.last.cells.first.u = :single
   end
 end
 
