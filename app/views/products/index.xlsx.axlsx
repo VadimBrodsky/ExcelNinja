@@ -19,10 +19,18 @@ wb.styles do |style|
 
       # links to products
       sheet.add_hyperlink location: url_for(action: 'show', id: product.id, only_path: false), ref: sheet.rows.last.cells.first
+
+      # link to the other sheet
+      # sheet.add_hyperlink location: "'Another Sheet'!B2", ref: sheet.rows.last.cells.first, target: :sheet
     end
 
     # override styling
     sheet.rows.last.cells.first.u = :single
+
   end
+end
+
+wb.add_worksheet(name: 'Another Sheet') do |sheet|
+  sheet.add_row ['a cell']
 end
 
