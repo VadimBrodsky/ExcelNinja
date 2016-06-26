@@ -16,7 +16,12 @@ wb.styles do |style|
   wb.add_worksheet(name: 'Products') do |sheet|
     @products.each do |product|
       sheet.add_row [product.title, product.price, product.created_at], style: [nil, highlight_cell, date_cell]
+
+      # links to products
+      sheet.add_hyperlink location: url_for(action: 'show', id: product.id, only_path: false), ref: sheet.rows.last.cells.first
     end
+
+    # override styling
     sheet.rows.last.cells.first.u = :single
   end
 end
