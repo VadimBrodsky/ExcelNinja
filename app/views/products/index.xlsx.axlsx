@@ -5,7 +5,9 @@ wb = xlsx_package.workbook
 wb.styles do |style|
   highlight_cell = style.add_style(bg_color: 'EFC376',
                                    border: Axlsx::STYLE_THIN_BORDER,
-                                   alignment: { horizontal: :center })
+                                   alignment: { horizontal: :center },
+                                   num_fmt: 8)
+                                   #:format_code => '#.##')
 
   date_cell = style.add_style(format_code: 'yyyy-mm-dd', 
                               border: Axlsx::STYLE_THIN_BORDER)
