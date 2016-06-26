@@ -1,9 +1,15 @@
 # init new excel workbook
 wb = xlsx_package.workbook
 
-# add sheet to workbook
-wb.add_worksheet(name: 'Products') do |sheet|
-  @products.each do |product|
-    sheet.add_row [product.title, product.price]
+# wrap it all in a syle block
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: 'EFC376')
+
+  # add sheet to workbook
+  wb.add_worksheet(name: 'Products') do |sheet|
+    @products.each do |product|
+      sheet.add_row [product.title, product.price], style: [nil, highlight_cell]
+    end
   end
 end
+
