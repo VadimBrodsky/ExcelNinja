@@ -23,6 +23,7 @@ wb.styles do |style|
       # link to the other sheet
       # sheet.add_hyperlink location: "'Another Sheet'!B2", ref: sheet.rows.last.cells.first, target: :sheet
     end
+    sheet.add_row ['Total', "=SUM(B1:B#{@products.length})"]
 
     # override styling
     sheet.rows.last.cells.first.u = :single
